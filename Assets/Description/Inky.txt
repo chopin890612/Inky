@@ -1,0 +1,5 @@
+<color=yellow>一開始的小卷，大家的好朋友~~</color>
+
+<color=red>技能說明:</color>
+
+<color=fuchsia>當技能冷卻結束時可以免疫一次傷害~~</color>
