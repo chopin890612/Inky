@@ -1,7 +1,0 @@
-<color=yellow>突變成紫色的小卷，思乎擁有一些<color=purple><b>奇怪</b></color>的能力!!</color>
-
-<color=red>技能說明:</color>
-
-<color=fuchsia>可利用充能條來瞬間移動。
-快速點擊並按住之後在原地留下標記，結束長按或是充能使用完畢會回到標記處。
-只要沒有在使用技能充能會慢慢回復。</color>
