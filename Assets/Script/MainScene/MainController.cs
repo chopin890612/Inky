@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DouduckGame;
 
 public class MainController : MonoBehaviour
 {
@@ -17,11 +18,11 @@ public class MainController : MonoBehaviour
         shopUI.SetActive(true);
         shopBut.SetActive(false);
         startBut.SetActive(false);
-        GameManager.DataLoad();
+        DouduckGameCore.GetSystem<DataSystem>().DataLoad();
     }
     public void BackButton()
     {
-        GameManager.DataSave();
+        DouduckGameCore.GetSystem<DataSystem>().DataSave();
         shopUI.SetActive(false);
         shopBut.SetActive(true);
         startBut.SetActive(true);

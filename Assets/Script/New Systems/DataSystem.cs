@@ -5,7 +5,7 @@ using DouduckGame;
 
 public class DataSystem : IGameSystemMono
 {
-    private PlayerDataNew PlayerData;
+    private PlayerData PlayerData;
     public DataIn skins;
     public DataIn squids;
 
@@ -24,20 +24,20 @@ public class DataSystem : IGameSystemMono
     }
     public void DataLoad()
     {
-        PlayerData = JsonUtility.FromJson<PlayerDataNew>(PlayerPrefs.GetString("jsonPlayerData"));
+        PlayerData = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("jsonPlayerData"));
 
         if(PlayerData == null)
         {
-            PlayerData = new PlayerDataNew();
+            PlayerData = new PlayerData();
             DataSave();
         }
     }
-    public PlayerDataNew GetPlayerData() { return PlayerData; }
+    public PlayerData GetPlayerData() { return PlayerData; }
 
 
 }
 
-public class PlayerDataNew
+public class PlayerData
 {
     public int[] selectID = new int[2] { 0, 0 };
     public List<bool> unlockedSkinsID = new List<bool>();
@@ -65,7 +65,7 @@ public class PlayerDataNew
             }
         }
     }
-    public PlayerDataNew()
+    public PlayerData()
     {
         Inital();
     }

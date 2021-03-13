@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DouduckGame;
 
 public class ScenesManager : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class ScenesManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
-        PlayerPrefs.SetString("jsonData", JsonUtility.ToJson(GameManager.data));
+        PlayerPrefs.SetString("jsonData", JsonUtility.ToJson(DouduckGameCore.GetSystem<DataSystem>().GetPlayerData()));
         Time.timeScale = 1f;
     }
     void LoadSScene()
@@ -27,7 +28,7 @@ public class ScenesManager : MonoBehaviour
     void MMainMenu()
     {
         SceneManager.LoadScene(0);
-        PlayerPrefs.SetString("jsonData", JsonUtility.ToJson(GameManager.data));
+        PlayerPrefs.SetString("jsonData", JsonUtility.ToJson(DouduckGameCore.GetSystem<DataSystem>().GetPlayerData()));
         Time.timeScale = 1f;
     }
 }

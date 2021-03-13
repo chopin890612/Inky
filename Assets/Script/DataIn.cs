@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DouduckGame;
 
 [CreateAssetMenu(fileName = "DataIn")]
 public class DataIn : ScriptableObject
@@ -34,10 +35,10 @@ public class ItemBase
     //}
     public bool Unlock()
     {
-        if (GameManager.data.coin >= unlockCost)
+        if (DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().coin >= unlockCost)
         {
             //unlocked = true;
-            GameManager.data.coin -= unlockCost;
+            DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().coin -= unlockCost;
             return true;
         }
         return false;

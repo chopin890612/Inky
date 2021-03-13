@@ -8,7 +8,7 @@ public class Test001 : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
-            DouduckGameCore.AddSystem<GameManagerNew>();
+            DouduckGameCore.AddSystem<GameManager>();
         if (Input.GetKeyDown(KeyCode.S))
             DouduckGameCore.RemoveSystem<InputSystem>();
         if(Input.GetKeyDown(KeyCode.D))

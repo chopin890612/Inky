@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using DouduckGame;
 
 public class GameController : MonoBehaviour
 {
@@ -28,9 +29,9 @@ public class GameController : MonoBehaviour
         ScreenSetup();
         InvokeRepeating("Timer", 0, 1f);
         GameSetup();
-        Instantiate(player[GameManager.data.selectID[1]]);
+        Instantiate(player[DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().selectID[1]]);
         skin = GameObject.Find("Cloth");
-        skin.GetComponent<SpriteRenderer>().sprite = GameManager.skins.dataIn[GameManager.data.selectID[0]].Texture;
+        skin.GetComponent<SpriteRenderer>().sprite = DouduckGameCore.GetSystem<DataSystem>().skins.dataIn[DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().  selectID[0]].Texture;
 
         gameoverUI.SetActive(false);
         pauseUI.SetActive(false);
@@ -45,7 +46,7 @@ public class GameController : MonoBehaviour
             HookSpawner();
             time = Time.time;
         }
-        coinsText.text = "X " + GameManager.data.coin.ToString();
+        coinsText.text = "X " + DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().coin.ToString();
 
         if(!gaming)
         {
@@ -53,11 +54,11 @@ public class GameController : MonoBehaviour
             if (gameOver)
             {
                 gameoverUI.SetActive(true);
-                if (gameTime > GameManager.data.highestScore)
-                    GameManager.data.highestScore = gameTime-1;
-                gameoverUI.transform.GetChild(0).gameObject.GetComponent<Text>().text = "HighScore:" + GameManager.data.highestScore.ToString();
+                if (gameTime > DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().highestScore)
+                    DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().highestScore = gameTime-1;
+                gameoverUI.transform.GetChild(0).gameObject.GetComponent<Text>().text = "HighScore:" + DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().highestScore.ToString();
 
-                GameManager.DataSave();
+                DouduckGameCore.GetSystem<DataSystem>().DataSave();
                 //Debug.Log("GAMEOVER!!!");
                 gameOver = false;
             }
@@ -133,13 +134,13 @@ public class GameController : MonoBehaviour
     }
     public void OptionsUI()
     {
-        optionsUI.transform.GetChild(0).gameObject.GetComponent<Slider>().value = GameManager.data.speedScale.x;
-        optionsUI.transform.GetChild(1).gameObject.GetComponent<Slider>().value = GameManager.data.speedScale.y;
+        optionsUI.transform.GetChild(0).gameObject.GetComponent<Slider>().value = DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().speedScale.x;
+        optionsUI.transform.GetChild(1).gameObject.GetComponent<Slider>().value = DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().speedScale.y;
         optionsUI.SetActive(true);
     }
     public void ApplyBuuton()
     {
-        GameManager.data.speedScale = new Vector2(optionsUI.transform.GetChild(0).gameObject.GetComponent<Slider>().value, optionsUI.transform.GetChild(1).gameObject.GetComponent<Slider>().value);
+        DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().speedScale = new Vector2(optionsUI.transform.GetChild(0).gameObject.GetComponent<Slider>().value, optionsUI.transform.GetChild(1).gameObject.GetComponent<Slider>().value);
         optionsUI.SetActive(false);
     }
     public void BackButton()

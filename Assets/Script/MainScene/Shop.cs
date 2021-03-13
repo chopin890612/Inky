@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using DouduckGame;
 
 public class Shop : MonoBehaviour
 {
@@ -20,18 +21,18 @@ public class Shop : MonoBehaviour
     }
     private void Update()
     {
-        coinText.text = "X " + GameManager.data.coin.ToString();
+        coinText.text = "X " + DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().coin.ToString();
     }
     public void SkinButton()
     {
-        GameManager.DataSave();
+        DouduckGameCore.GetSystem<DataSystem>().DataSave();
         ItemClear();
         state = "Skin";
         ClothsFillIn();
     } 
     public void CharacterButton()
     {
-        GameManager.DataSave();
+        DouduckGameCore.GetSystem<DataSystem>().DataSave();
         ItemClear();
         state = "Character";
         CharacterFillIn();
@@ -45,7 +46,7 @@ public class Shop : MonoBehaviour
     }
     void ClothsFillIn()
     {
-        for (int i = 0; i < GameManager.skins.dataIn.Length; i++)
+        for (int i = 0; i < DouduckGameCore.GetSystem<DataSystem>().skins.dataIn.Length; i++)
         {
             //container.GetComponent<Selected>().thisIndex = i;
             GameObject temp = Instantiate(container, content.transform);
@@ -54,7 +55,7 @@ public class Shop : MonoBehaviour
     }
     void CharacterFillIn()
     {
-        for (int i = 0; i < GameManager.squids.dataIn.Length; i++)
+        for (int i = 0; i < DouduckGameCore.GetSystem<DataSystem>().squids.dataIn.Length; i++)
         {
             //container.GetComponent<Selected>().thisIndex = i;
             GameObject temp = Instantiate(container, content.transform);

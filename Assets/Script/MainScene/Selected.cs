@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using DouduckGame;
 
 
 public class Selected : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
@@ -25,19 +26,19 @@ public class Selected : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     private void Start()
     {
         if (Shop.state == "Skin")
-            item = GameManager.skins.dataIn[thisIndex];
+            item = DouduckGameCore.GetSystem<DataSystem>().skins.dataIn[thisIndex];
         else
-            item = GameManager.squids.dataIn[thisIndex];
+            item = DouduckGameCore.GetSystem<DataSystem>().squids.dataIn[thisIndex];
         gameObject.GetComponent<Image>().sprite = item.Texture;
         gameObject.name = item.ItemName;
         blocker = gameObject.transform.GetChild(0).gameObject;
 
-        if ((gameObject.name == GameManager.squids.dataIn[0].ItemName) || (gameObject.name == GameManager.skins.dataIn[0].ItemName))
+        if ((gameObject.name == DouduckGameCore.GetSystem<DataSystem>().squids.dataIn[0].ItemName) || (gameObject.name == DouduckGameCore.GetSystem<DataSystem>().skins.dataIn[0].ItemName))
             blocker.SetActive(false);
 
-        if(Shop.state == "Skin" && GameManager.data.unlockedSkinsID[thisIndex])
+        if(Shop.state == "Skin" && DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().unlockedSkinsID[thisIndex])
             blocker.SetActive(false);
-        if(Shop.state == "Character" && GameManager.data.unlockedSquidsID[thisIndex])
+        if(Shop.state == "Character" && DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().unlockedSquidsID[thisIndex])
             blocker.SetActive(false);
             
             
@@ -58,12 +59,12 @@ public class Selected : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     {
         if (Shop.state == "Skin")
         {
-            GameManager.data.selectID = new int[] { thisIndex, GameManager.data.selectID[1] };
+            DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().selectID = new int[] { thisIndex, DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().selectID[1] };
             //Debug.Log(GameManager.data.SelectedID[0] + ", " + GameManager.data.SelectedID[1]);
         }
         else
         {
-            GameManager.data.selectID = new int[] { GameManager.data.selectID[0], thisIndex };
+            DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().selectID = new int[] { DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().selectID[0], thisIndex };
             //Debug.Log(GameManager.data.SelectedID[0] + ", " + GameManager.data.SelectedID[1]);
             
         }
@@ -73,14 +74,14 @@ public class Selected : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 
         if(Shop.state == "Skin")
         {
-            if (GameManager.data.selectID[0] == thisIndex)
+            if (DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().selectID[0] == thisIndex)
                 selectMask.SetActive(true);
             else
                 selectMask.SetActive(false);
         }
         else if(Shop.state == "Character")
         {
-            if (GameManager.data.selectID[1] == thisIndex)
+            if (DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().selectID[1] == thisIndex)
                 selectMask.SetActive(true);
             else
                 selectMask.SetActive(false);
@@ -92,12 +93,12 @@ public class Selected : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
             tempDescriptionUI = Instantiate(descriptionUI,Vector2.zero,Quaternion.identity,UIBackground.transform);
             if(Shop.state == "Skin")
             {
-                tempDescriptionUI.transform.GetChild(1).GetComponent<Text>().text = GameManager.skins.dataIn[thisIndex].description.text;
+                tempDescriptionUI.transform.GetChild(1).GetComponent<Text>().text = DouduckGameCore.GetSystem<DataSystem>().skins.dataIn[thisIndex].description.text;
                 tempDescriptionUI.transform.GetChild(2).GetComponent<Text>().text = item.ItemName;
             }
             else if(Shop.state == "Character")
             {
-                tempDescriptionUI.transform.GetChild(1).GetComponent<Text>().text = GameManager.squids.dataIn[thisIndex].description.text;
+                tempDescriptionUI.transform.GetChild(1).GetComponent<Text>().text = DouduckGameCore.GetSystem<DataSystem>().squids.dataIn[thisIndex].description.text;
                 tempDescriptionUI.transform.GetChild(2).GetComponent<Text>().text = item.ItemName;
             }
             tempDescriptionUI.transform.localPosition = Vector2.zero;
@@ -134,10 +135,10 @@ public class Selected : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
         if(select && item.Unlock())
         {
             blocker.SetActive(false);
-            if(Shop.state == "Skin")            
-                GameManager.data.unlockedSkinsID[thisIndex] = true;
+            if(Shop.state == "Skin")
+                DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().unlockedSkinsID[thisIndex] = true;
             else if(Shop.state == "Character")
-                GameManager.data.unlockedSquidsID[thisIndex] = true;
+                DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().unlockedSquidsID[thisIndex] = true;
             select = false;
         }
     }

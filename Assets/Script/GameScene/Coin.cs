@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DouduckGame;
 
 public class Coin : MonoBehaviour
 {
@@ -21,6 +22,6 @@ public class Coin : MonoBehaviour
     private void Delete()
     { 
         Destroy(gameObject);
-        GameManager.data.coin += 1;
+        DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().coin += 1;
     }
 }

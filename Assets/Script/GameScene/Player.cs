@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using DouduckGame;
 
 public class Player : MonoBehaviour
 {
@@ -76,7 +77,7 @@ public class Player : MonoBehaviour
     public virtual void Move(Vector2 inputPosition)
     {
         //player.transform.Translate(inputPosition * Time.deltaTime * 120);
-        player.GetComponent<Rigidbody2D>().velocity = inputPosition * new Vector2(60f,60f) * GameManager.data.speedScale;
+        player.GetComponent<Rigidbody2D>().velocity = inputPosition * new Vector2(60f,60f) * DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().speedScale;
     }
 
 
