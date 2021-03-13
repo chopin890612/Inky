@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae21bc6008155a2418c957140a183194, type: 3}
+  m_Name: Skins
+  m_EditorClassIdentifier: 
+  dataIn:
+  - itemName: "<color=white><b>\u4EC0\u9EBC\u90FD\u6C92\u7A7F</b></color>"
+    texture: {fileID: 0}
+    unlockCost: 0
+    description: {fileID: 4900000, guid: 437f2f98b441a814d9866778402161cf, type: 3}
+  - itemName: "<color=red><b>\u771F\u7D05\u90AA\u773C</b></color>"
+    texture: {fileID: 21300000, guid: f541382f31089214fab583f34ce8246c, type: 3}
+    unlockCost: 1
+    description: {fileID: 4900000, guid: a1f53fa516345e746bcff04475070ba9, type: 3}
+  - itemName: "<color=#6daba1><b>\u91D1\u9AEE\u78A7\u773C?</b></color>"
+    texture: {fileID: 21300000, guid: e9b4e3a6a1824f4468c8702b00b8c7b5, type: 3}
+    unlockCost: 1
+    description: {fileID: 4900000, guid: f7415052e9e597c41af2fabd926664e6, type: 3}
+  - itemName: "<color=#751717><b>\u7B2C\u4E09\u96BB\u773C</b></color>"
+    texture: {fileID: 21300000, guid: 08efbe0110beb3c489864546dc86777f, type: 3}
+    unlockCost: 1
+    description: {fileID: 4900000, guid: 08e85952a1445f040963687843e35d10, type: 3}

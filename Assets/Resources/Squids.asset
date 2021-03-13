@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae21bc6008155a2418c957140a183194, type: 3}
+  m_Name: Squids
+  m_EditorClassIdentifier: 
+  dataIn:
+  - itemName: "<color=#f57d42><b>\u5C0F\u5377</b></color>"
+    texture: {fileID: 21300000, guid: 5a5aaa5e12279634bb4c8b41c2ab599d, type: 3}
+    unlockCost: 0
+    description: {fileID: 4900000, guid: 8117766bd3d290044bfe2478bd2bc72c, type: 3}
+  - itemName: "<color=#9279ba><b>\u5DEB\u5E2B</b></color>"
+    texture: {fileID: 21300000, guid: d513a81f40502ab418e4cf1105c182d2, type: 3}
+    unlockCost: 50
+    description: {fileID: 4900000, guid: 0cb7c9a9da3eead4e8b61897fc4f76a8, type: 3}
