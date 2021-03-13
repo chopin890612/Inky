@@ -14,4 +14,30 @@ public class GameManager : IGameSystemMono
     {
         DouduckGameCore.GetSystem<DataSystem>().DataLoad();
     }
+    private void Update()
+    {
+        #region Dev ONLY
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            DouduckGameCore.GetSystem<DataSystem>().PlayDataInital();
+            DouduckGameCore.GetSystem<DataSystem>().DataSave();
+
+            Debug.Log("Inital");
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            for (int i = 0; i < DouduckGameCore.GetSystem<DataSystem>().skins.dataIn.Length; i++)
+            {
+                DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().unlockedSkinsID[i] = false;
+            }
+            DouduckGameCore.GetSystem<DataSystem>().DataSave();
+            Debug.Log("SkinClear");
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            DouduckGameCore.GetSystem<DataSystem>().GetPlayerData().coin += 50;
+            DouduckGameCore.GetSystem<DataSystem>().DataSave();
+        }
+        #endregion
+    }
 }

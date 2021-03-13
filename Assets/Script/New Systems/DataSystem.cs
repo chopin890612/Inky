@@ -5,9 +5,10 @@ using DouduckGame;
 
 public class DataSystem : IGameSystemMono
 {
-    private PlayerData PlayerData;
+    private PlayerData playerData;
     public DataIn skins;
     public DataIn squids;
+    public DataIn libs;
 
 
     public override void StartGameSystem()
@@ -20,19 +21,31 @@ public class DataSystem : IGameSystemMono
 
     public void DataSave()
     {
-        PlayerPrefs.SetString("jsonPlayerData", JsonUtility.ToJson(PlayerData));
+        PlayerPrefs.SetString("jsonPlayerData", JsonUtility.ToJson(playerData));
     }
     public void DataLoad()
     {
-        PlayerData = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("jsonPlayerData"));
+        playerData = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("jsonPlayerData"));
 
-        if(PlayerData == null)
+        if(playerData == null)
         {
-            PlayerData = new PlayerData();
-            DataSave();
+            PlayDataInital();
         }
     }
-    public PlayerData GetPlayerData() { return PlayerData; }
+    public void PlayDataInital()
+    {
+        playerData = new PlayerData();
+        foreach (ItemBase i in skins.dataIn)
+        {
+            playerData.unlockedSkinsID.Add(false);
+        }
+        foreach (ItemBase i in squids.dataIn)
+        {
+            playerData.unlockedSquidsID.Add(false);
+        }
+        DataSave();
+    }
+    public PlayerData GetPlayerData() { return playerData; }
 
 
 }
@@ -42,10 +55,11 @@ public class PlayerData
     public int[] selectID = new int[2] { 0, 0 };
     public List<bool> unlockedSkinsID = new List<bool>();
     public List<bool> unlockedSquidsID = new List<bool>();
+    public List<bool> unlockedLibID = new List<bool>();
     public int coin;
     public int highestScore;
     public Vector2 speedScale = Vector2.one;
-    public void Inital()
+    private void Inital()
     {
         {
             coin = 0;
@@ -53,16 +67,16 @@ public class PlayerData
             speedScale = Vector2.one;
             selectID = new int[2] { 0, 0 };
 
-            //unlockedSkinsID.Clear();
-            //unlockedSquidsID.Clear();
-            foreach (ItemBase i in DouduckGameCore.GetSystem<DataSystem>().skins.dataIn)
-            {
-                unlockedSkinsID.Add(false);
-            }
-            foreach (ItemBase i in DouduckGameCore.GetSystem<DataSystem>().squids.dataIn)
-            {
-                unlockedSquidsID.Add(false);
-            }
+            unlockedSkinsID.Clear();
+            unlockedSquidsID.Clear();
+            //foreach (ItemBase i in DouduckGameCore.GetSystem<DataSystem>().skins.dataIn)
+            //{
+            //    unlockedSkinsID.Add(false);
+            //}
+            //foreach (ItemBase i in DouduckGameCore.GetSystem<DataSystem>().squids.dataIn)
+            //{
+            //    unlockedSquidsID.Add(false);
+            //}
         }
     }
     public PlayerData()

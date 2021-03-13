@@ -14,7 +14,6 @@ public class Shop : MonoBehaviour
     public static string state;
     private void Start()
     {
-        //GameManager.DataLoad();
         ItemClear();
         state = "Skin";
         ClothsFillIn();
