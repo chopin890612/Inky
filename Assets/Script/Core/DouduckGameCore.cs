@@ -30,7 +30,6 @@ namespace DouduckGame
         void Start()
         {
             m_SystemManager.StartInitialSystem();
-            AddSystem<GameManager>();
         }
 
         // *** System manager method ***

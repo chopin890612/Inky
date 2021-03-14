@@ -9,26 +9,26 @@ public class ScenesManager : MonoBehaviour
 {
     public void PlayAgain()
     {
-        SceneManager.LoadScene(1); 
+        SceneManager.LoadScene("gamemode"); 
     }
     public void StartGame() 
     {
-        SceneManager.LoadScene(1); 
+        SceneManager.LoadScene("gamemode"); 
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
-        PlayerPrefs.SetString("jsonData", JsonUtility.ToJson(DouduckGameCore.GetSystem<DataSystem>().GetPlayerData()));
+        SceneManager.LoadScene("main");
+        DouduckGameCore.GetSystem<DataSystem>().DataSave();
         Time.timeScale = 1f;
     }
     void LoadSScene()
     {
-       SceneManager.LoadScene(1); 
+       SceneManager.LoadScene("gamemode"); 
     }
     void MMainMenu()
     {
-        SceneManager.LoadScene(0);
-        PlayerPrefs.SetString("jsonData", JsonUtility.ToJson(DouduckGameCore.GetSystem<DataSystem>().GetPlayerData()));
+        SceneManager.LoadScene("main");
+        DouduckGameCore.GetSystem<DataSystem>().DataSave();
         Time.timeScale = 1f;
     }
 }
