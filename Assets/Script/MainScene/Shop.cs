@@ -7,7 +7,7 @@ using DouduckGame;
 
 public class Shop : MonoBehaviour
 {
-    public GameObject container;
+    public GameObject itemContainer;
     public GameObject content;
     public GameObject confirm;
     public Text coinText;
@@ -48,7 +48,7 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < DouduckGameCore.GetSystem<DataSystem>().skins.dataIn.Length; i++)
         {
             //container.GetComponent<Selected>().thisIndex = i;
-            GameObject temp = Instantiate(container, content.transform);
+            GameObject temp = Instantiate(itemContainer, content.transform);
             temp.GetComponent<Selected>().thisIndex = i;
         }
     }
@@ -57,7 +57,7 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < DouduckGameCore.GetSystem<DataSystem>().squids.dataIn.Length; i++)
         {
             //container.GetComponent<Selected>().thisIndex = i;
-            GameObject temp = Instantiate(container, content.transform);
+            GameObject temp = Instantiate(itemContainer, content.transform);
             temp.GetComponent<Selected>().thisIndex = i;
         }
     }
